@@ -1,10 +1,10 @@
 import { BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { hashSync } from 'bcrypt';
+import { hashSync } from "bcrypt";
 
-@Entity()
+@Entity({name: 'users'})
 export class UsersEntity {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     id: string;
 
     @Column({name: "first_name"})
