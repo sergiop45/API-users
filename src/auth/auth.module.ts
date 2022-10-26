@@ -6,6 +6,7 @@ import { UsersModule } from 'src/users/users.module';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { LocalStrategy } from './strategies/local.strategy';
+import { jwtStrategy } from './strategies/jwt.stategy';
 
 @Module({
   imports: [ConfigModule.forRoot(),
@@ -16,7 +17,7 @@ import { LocalStrategy } from './strategies/local.strategy';
               signOptions: {expiresIn: '50s'}
             })
           ],
-  providers: [AuthService, LocalStrategy],
+  providers: [AuthService, LocalStrategy, jwtStrategy],
   controllers: [AuthController]
 })
 export class AuthModule {}
