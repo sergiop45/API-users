@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put } from '
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
+import { hashSync } from 'bcrypt';
 
 @Controller('/api/users')
 export class UsersController {
@@ -15,6 +16,7 @@ export class UsersController {
 
     @Post()
     async store(@Body() body: CreateUserDto) {
+        body.password = hashSync(body.password, 10);
         return this.usersService.create(body);
     }
 
